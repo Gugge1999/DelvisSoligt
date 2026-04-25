@@ -1,0 +1,18 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./wwwroot/dist",
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "target": "es2024",
+    "sourceMap": true,
+    "strict": true,
+    "rootDir": "./wwwroot/Scripts"
+  },
+  "include": ["./wwwroot/Scripts/**/*.ts"],
+  "exclude": ["node_modules", "**/*.test.ts"]
+}

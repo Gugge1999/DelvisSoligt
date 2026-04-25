@@ -35,6 +35,6 @@
 	</Target>
 
 	<Target Name="esbuild" BeforeTargets="Tailwind">
-		<Exec Command="npm run build:js" />
+		<Exec Command="pnpm run build:js" />
 	</Target>
 </Project>
