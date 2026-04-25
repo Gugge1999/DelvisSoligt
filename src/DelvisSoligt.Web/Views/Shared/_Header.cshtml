@@ -1,0 +1,134 @@
+@using System.Collections.Generic;
+@using DelvisSoligt.Web.Models;
+@{
+    var links = new List<HeaderLink>
+    {
+        new HeaderLink
+        {
+            Name = "Showcase",
+            Controller = "Home",
+            Action = "Showcase"
+        },
+        new HeaderLink
+        {
+            Name = "Docs",
+            Controller = "Home",
+            Action = "Docs"
+        },
+        new HeaderLink
+        {
+            Name = "Blog",
+            Controller = "Home",
+            Action = "Index"
+        },
+        new HeaderLink
+        {
+            Name = "Analytics",
+            Controller = "Home",
+            Action = "Index"
+        },
+        new HeaderLink
+        {
+            Name = "Templates",
+            Controller = "Home",
+            Action = "Index"
+        },
+        new HeaderLink
+        {
+            Name = "Enterprise",
+            Controller = "Home",
+            Action = "Index"
+        },
+    };
+}
+
+<div class="fixed top-0 left-0 w-full border-b border-solid border-gray-200">
+    <header class="flex justify-between max-w-screen-xl mx-auto">
+        <nav class="flex gap-6 h-16 items-center">
+            <a class="font-bold text-3xl block" asp-area="" asp-controller="Home" asp-action="Index">.NET</a>
+            <ul class="flex gap-5">
+                @foreach (var link in links)
+                {
+                    <li class="text-gray-500 transition-color hover:text-gray-800 font-medium">
+                        <a asp-area="" asp-controller="@link.Controller" asp-action="@link.Action">@link.Name</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
+        <div class="flex gap-3 h-16 items-center">
+            <button id="input-button" class="w-[237px] h-8 pr-[6px] pl-2 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-between text-sm transition-colors hover:bg-gray-200 cursor-text">
+                Search docs on Google...
+                <kbd class="rounded border border-solid border-gray-300 bg-white text-xs px-1 leading-5 text-gray-500">
+                    <kbd>Ctrl</kbd><kbd>K</kbd>
+                </kbd>
+            </button>
+
+            <button class="rounded-lg px-3 py-1 border border-solid border-gray-200 transition-colors hover:bg-gray-100">⬤ Deploy</button>
+            <a
+                href="https://learn.microsoft.com/en-us/dotnet/"
+                target="_blank"
+                rel="noreferrer noopener"
+                class="rounded-lg px-3 py-1 text-white bg-slate-800 transition-colors hover:bg-slate-800/90"
+            >Learn</a>
+        </div>
+    </header>
+</div>
+
+<div id="popupOverlay" class="hidden fixed top-0 left-0 w-screen h-screen bg-white/80 z-10">
+    <div class="h-full w-full flex items-center justify-center">
+        <div class="w-[670px] bg-white rounded-lg border border-solid border-gray-200" role="dialog" style="box-shadow: 0 16px 70px rgba(0,0,0,.2);">
+            <div class="relative flex flex-col">
+                <div class="flex w-full flex-none items-center gap-2 rounded-t-lg px-4 pt-4 text-xs">
+                    <button class="h-[20px] cursor-pointer rounded-[4px] border border-solid px-1 text-xs font-medium border-1 border-inset border-blue-400 bg-blue-200 text-blue-700" tabindex="-1" type="button" aria-label="Search App Router documentation">App</button>
+                    <button class="h-[20px] cursor-pointer rounded-[4px] border border-solid px-1 text-xs font-medium bg-vercel-100 border-gray-200 text-gray-500 hover:border-gray-200 hover:text-gray-900 dark:border-gray-200 dark:bg-gray-100 dark:text-gray-900 dark:hover:text-gray-600" tabindex="-1" type="button" aria-label="Search Pages Router documentation">Pages</button>
+                </div>
+            </div>
+            <div class="flex w-full flex-none items-center border-x-0 border-b border-t-0 border-solid border-b-gray-200">
+                <input class="w-full border-none bg-inherit p-4 text-base outline-none placeholder:text-gray-500" placeholder="Search docs on Google" autocomplete="off" autocorrect="off" spellcheck="false" aria-autocomplete="list" role="combobox" type="text" value="">
+                <button aria-label="Cancel" class="mr-2 h-[20px] cursor-pointer rounded-[4px] border border-solid border-gray-200 bg-transparent px-1 text-xs font-medium text-gray-500 transition after:content-['Close'] hover:bg-gray-100 hover:text-gray-900 md:after:content-['Esc']" tabindex="-1" type="button"></button>
+            </div>
+            <ul class="h-[400px] p-2">
+                @foreach (var item in links)
+                {
+                    <li>
+                        <a
+                            class="flex h-12 w-full gap-2 px-4 cursor-pointer items-center data-[selected=true]:text-gray-950 data-[selected=true]:bg-gray-100 text-gray-500 data-[selected=true]:rounded-lg rounded-lg hover:bg-gray-100 data-[selected=true]:dark:bg-gray-100 hover:text-gray-950"
+                            cmdk-item="" role="option" data-value="introduction"
+                        >
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" style="color: currentcolor; width: 20px; height: 20px;"><path d="M7.06883 21.6H16.219C18.7973 21.6 20.8879 19.5093 20.8879 16.9312V5.86885C20.8879 3.29074 18.7973 1.20001 16.219 1.20001H7.06883C4.49072 1.20001 2.39999 3.29074 2.39999 5.86885V16.9312C2.39999 19.5093 4.49072 21.6 7.06883 21.6Z"></path>
+	                            <path d="M15.3946 15.842H7.89178M15.3946 11.245H7.89178M10.755 6.6586H7.89232"></path>
+                            </svg>
+                            
+                            @item.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+        var inputButton = document.getElementById("input-button")
+        var popupOverlay = document.getElementById("popupOverlay")
+        var popupDialog = document.querySelector("#popupOverlay [role='dialog']")
+
+        function togglePopup() {
+            popupOverlay.classList.toggle('hidden')
+        }
+
+        inputButton.addEventListener("click", () => {
+            togglePopup()
+        })
+
+        popupOverlay.addEventListener("click", () => {
+            togglePopup()
+        })
+
+        popupDialog.addEventListener("click", (event) => {
+            event.stopPropagation()
+        })
+    })
+</script>

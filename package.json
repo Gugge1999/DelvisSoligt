@@ -1,0 +1,15 @@
+{
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^1.10.13",
+    "eslint": "^8.49.0",
+    "turbo": "^1.10.13"
+  }
+}
